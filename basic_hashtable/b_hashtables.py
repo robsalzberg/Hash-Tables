@@ -26,8 +26,8 @@ class BasicHashTable:
 def hash(string, max):
     hash = 5381
     for x in string:
-        hash = ((( hash << 5) + hash) + ord(x)) & 0xFFFFFFFF
-    return hash
+        hash = (( hash << 5) + hash) + ord(x)
+    return (hash % max)
 
 
 # '''
@@ -36,7 +36,15 @@ def hash(string, max):
 # If you are overwriting a value with a different key, print a warning.
 # '''
 def hash_table_insert(hash_table, key, value):
-    pass
+    i = hash(key, len(hash_table.storage))
+    pair = Pair(key, value)
+    stored_pair = hash_table.storage[i]
+
+    if stored_pair is not None:
+        if stored_pair.key != key:
+            print("Warning, overwriting old key value pair")
+    
+    hash_table.storage[i] = pair
 
 
 # '''
