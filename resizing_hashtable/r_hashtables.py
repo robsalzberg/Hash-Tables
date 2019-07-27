@@ -87,7 +87,12 @@ def hash_table_retrieve(hash_table, key):
 # Fill this in
 # '''
 def hash_table_resize(hash_table):
-    pass
+    ht = HashTable(hash_table.capacity * 2)
+
+    for i in range(0, hash_table.capacity):
+        print(hash_table.storage[i].key)
+        ht.storage[i] = hash_table.storage[i]
+    return ht
 
 
 def Testing():
